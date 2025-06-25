@@ -60,7 +60,7 @@ const Home = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:4001/api/invoices?page=${pageNum}`
+        `${import.meta.env.VITE_API_BASE_URL}/api/invoices?page=${pageNum}`
       );
       setInvoices(response.data.invoices || []);
       setTotalPages(response.data.totalPages || 1);
@@ -75,7 +75,9 @@ const Home = () => {
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this invoice?")) return;
     try {
-      await axios.delete(`http://localhost:4001/api/invoice/${id}`);
+      await axios.delete(
+        `${import.meta.env.VITE_API_BASE_URL}/api/invoices/${id}`
+      );
       fetchInvoices();
     } catch (error) {
       console.error(error);
@@ -103,7 +105,10 @@ const Home = () => {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:4001/api/process-invoices", formData);
+      await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/process-invoices`,
+        formData
+      );
       await fetchInvoices(page);
       setFiles([]);
     } catch {

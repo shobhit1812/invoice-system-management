@@ -12,7 +12,7 @@ const Summary = () => {
     const fetchSummary = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4001/api/invoice/summaries"
+          `${import.meta.env.VITE_API_BASE_URL}/api/invoice/summaries`
         );
         setSummaryData(res.data.totalsByCategory);
       } catch (err) {

@@ -14,7 +14,7 @@ const Edit = () => {
     const fetchInvoice = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4001/api/invoice/${id}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/invoice/${id}`
         );
         setInvoice(response.data.invoice);
       } catch (error) {
@@ -41,7 +41,10 @@ const Edit = () => {
   const handleSave = async () => {
     try {
       setSaving(true);
-      await axios.put(`http://localhost:4001/api/invoice/${id}`, invoice);
+      await axios.put(
+        `${import.meta.env.VITE_API_BASE_URL}/api/invoice/${id}`,
+        invoice
+      );
       alert("Invoice updated successfully");
       navigate("/");
     } catch (error) {
