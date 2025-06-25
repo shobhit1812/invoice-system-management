@@ -76,7 +76,7 @@ const Home = () => {
     if (!confirm("Are you sure you want to delete this invoice?")) return;
     try {
       await axios.delete(
-        `${import.meta.env.VITE_API_BASE_URL}/api/invoices/${id}`
+        `${import.meta.env.VITE_API_BASE_URL}/api/invoice/${id}`
       );
       fetchInvoices();
     } catch (error) {
